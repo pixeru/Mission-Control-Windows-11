@@ -502,6 +502,8 @@ void MC::_runlistenloop( HINSTANCE hInstance, BOOL rc )
 	wcscpy_s(nid.szTip, L"Mission Control");
 	Shell_NotifyIcon(NIM_ADD, &nid);
 
+	McHookMgr::initializeKbHooks();
+
 	if (rc) _runcycles( );
 	MSG msg = {};
 	BOOL bRet;
@@ -521,6 +523,8 @@ void MC::_runlistenloop( HINSTANCE hInstance, BOOL rc )
 	nid_del.hWnd = MC::_eventHwnd;
 	nid_del.uID = 1001;
 	Shell_NotifyIcon(NIM_DELETE, &nid_del);
+
+	McHookMgr::releaseKbHooks();
 
 	// If this ever happens something has gone amiss.
 	DestroyWindow( MC::_eventHwnd );
@@ -769,7 +773,7 @@ BOOL MC::_runcycle( )
 	McWindowMgr::allocateZoomW( );
 	McWindowMgr::allocateLabelW( );
 	// Git going.
-	McHookMgr::initializeKbHooks( );
+	
 	McWindowMgr::getMainW( )->start( );
 	// Message loop
 	// Note this message loop runs inside another message loop when
@@ -787,7 +791,7 @@ BOOL MC::_runcycle( )
 	BOOL rval = mc->getRunAgain( );
 	MC::setState( MCS_Idle );
 	delete mc;
-	McHookMgr::releaseKbHooks( );
+	
 	return rval;
 }
 

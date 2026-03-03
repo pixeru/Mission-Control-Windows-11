@@ -31,4 +31,21 @@
 *.out
 *.app
 
-/.vs
+/.vs/
+[Bb]in/
+[Oo]bj/
+[Xx]64/
+[Xx]86/
+[Dd]ebug/
+[Rr]elease/
+*.user
+*.suo
+*.sln.docstates
+*.log
+*.tlog
+*.pdb
+*.idb
+*.opendb
+*.db
+*.sdf
+*.ipch
