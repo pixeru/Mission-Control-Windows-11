@@ -112,6 +112,8 @@ enum McState
 #define WMMC_SHOWLABEL      0x0015	// Enable Labels
 #define WMMC_EXIT			0x00FF	// Exiting
 
+#define WM_TRAYICON         (WM_USER + 10)
+
 // Classes referenced in this header only as pointers.
 
 class McMainW;

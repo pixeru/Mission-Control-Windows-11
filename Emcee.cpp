@@ -492,6 +492,16 @@ void MC::_runlistenloop( HINSTANCE hInstance, BOOL rc )
 	// away or a new window appears -- this only matters when Emcee is active and showing
 	// thumbnails.
 	RegisterShellHookWindow( _eventHwnd );
+	
+	NOTIFYICONDATA nid = { sizeof(nid) };
+	nid.hWnd = MC::_eventHwnd;
+	nid.uID = 1001;
+	nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
+	nid.uCallbackMessage = WM_TRAYICON;
+	nid.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MC));
+	wcscpy_s(nid.szTip, L"Mission Control");
+	Shell_NotifyIcon(NIM_ADD, &nid);
+
 	if (rc) _runcycles( );
 	MSG msg = {};
 	BOOL bRet;
@@ -506,6 +516,12 @@ void MC::_runlistenloop( HINSTANCE hInstance, BOOL rc )
 		DispatchMessage( &msg );
 	}
 	DeregisterShellHookWindow( _eventHwnd );
+
+	NOTIFYICONDATA nid_del = { sizeof(nid_del) };
+	nid_del.hWnd = MC::_eventHwnd;
+	nid_del.uID = 1001;
+	Shell_NotifyIcon(NIM_DELETE, &nid_del);
+
 	// If this ever happens something has gone amiss.
 	DestroyWindow( MC::_eventHwnd );
 	MC::_eventHwnd = NULL;
@@ -583,6 +599,23 @@ LRESULT CALLBACK MC::_windowproc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 	}
 	switch (uMsg)
 	{
+	case WM_TRAYICON:
+		if (lParam == WM_LBUTTONUP || lParam == WM_RBUTTONUP)
+		{
+			POINT pt;
+			GetCursorPos(&pt);
+			HMENU hMenu = CreatePopupMenu();
+			AppendMenu(hMenu, MF_STRING, 1001, L"Exit");
+			SetForegroundWindow(hwnd);
+			int cmd = TrackPopupMenu(hMenu, TPM_RETURNCMD | TPM_NONOTIFY, pt.x, pt.y, 0, hwnd, NULL);
+			PostMessage(hwnd, WM_NULL, 0, 0);
+			DestroyMenu(hMenu);
+			if (cmd == 1001)
+			{
+				MC::Exit(0);
+			}
+		}
+		return 0;
 	case WM_QUERYENDSESSION:
 	case WM_ENDSESSION:
 		return MC::HandleShutdownMessage( "_windowProc", uMsg, wParam, lParam );
