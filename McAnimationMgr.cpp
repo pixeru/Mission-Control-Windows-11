@@ -114,7 +114,7 @@ HRESULT McAnimationMgr::doAnimate( HWND hwnd, double initialValue, double timeDi
 		hr = transitionLibrary->CreateCubicBezierLinearTransition
 		( MC::getProperties( )->getAnimationSpeed( ) / timeDivisor, 
 		 endingValue,
-		 .4, .8, .15, .99,
+		 .25, .1, .25, 1.0,
 		&pTransition);
 		
 	}
