@@ -496,15 +496,18 @@ void MC::_runlistenloop( HINSTANCE hInstance, BOOL rc )
 	NOTIFYICONDATA nid = { sizeof(nid) };
 	nid.hWnd = MC::_eventHwnd;
 	nid.uID = 1001;
-	nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP;
+	nid.uFlags = NIF_ICON | NIF_MESSAGE | NIF_TIP | NIF_INFO;
 	nid.uCallbackMessage = WM_TRAYICON;
 	nid.hIcon = LoadIcon(hInstance, MAKEINTRESOURCE(IDI_MC));
 	wcscpy_s(nid.szTip, L"Mission Control");
+	wcscpy_s(nid.szInfo, L"Mission Control is now running. The Win+Tab shortcut has been replaced to activate it.");
+	wcscpy_s(nid.szInfoTitle, L"Mission Control Started");
+	nid.dwInfoFlags = NIIF_INFO;
 	Shell_NotifyIcon(NIM_ADD, &nid);
 
 	McHookMgr::initializeKbHooks();
 
-	if (rc) _runcycles( );
+	// if (rc) _runcycles( );
 	MSG msg = {};
 	BOOL bRet;
 	while (0 != (bRet = GetMessage( &msg, NULL, 0, 0 )))
