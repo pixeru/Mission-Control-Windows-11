@@ -311,6 +311,10 @@ LRESULT McHookMgr::keyboardHookProc( int nCode, WPARAM wParam, LPARAM lParam )
 				{
 					PostMessage(MC::_eventHwnd, WM_USER, WMMC_STARTMC, 0);
 				}
+				else if (McWindowMgr::getMainW())
+				{
+					McWindowMgr::getMainW()->onFinish();
+				}
 			}
 			return 1;
 		}
