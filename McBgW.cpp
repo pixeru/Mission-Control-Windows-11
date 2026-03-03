@@ -33,7 +33,7 @@ McBgW::McBgW( ) : McBaseW( )
 	currentArrowSize = 0;
 	firstTime = TRUE;
 
-	taskViewB = startB = settingsB = leftArrowB = rightArrowB = NULL;
+	taskViewB = startB = leftArrowB = rightArrowB = NULL;
 
 	desktopBgBrush = immersiveBgBrush = NULL;
 	immersiveBgPen = NULL;    

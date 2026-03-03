@@ -366,8 +366,9 @@ BOOL McSettingsEditor::doActivate( McPropsMgr *_props, list<string> *apps )
 	displayData();
 
 	addActiveAppCombo->Items->Clear();
-	for ( list<string>::iterator it = apps->begin(); it != apps->end(); it++ )
-		addActiveAppCombo->Items->Add( gcnew String( (*it).data() ) );
+	if ( apps )
+		for ( list<string>::iterator it = apps->begin(); it != apps->end(); it++ )
+			addActiveAppCombo->Items->Add( gcnew String( (*it).data() ) );
 
 	COLORREF settingsColor = McModernAppMgr::GetSettingsColor();
 

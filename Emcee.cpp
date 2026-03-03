@@ -571,6 +571,10 @@ static void doProcessDelay( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 }
 
 
+#pragma managed
+SETTINGS_DISPOSITION doSettings(list<string>*);
+#pragma unmanaged
+
 LRESULT CALLBACK MC::_windowproc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lParam )
 {
 	BOOL repeat = FALSE;
@@ -669,16 +673,16 @@ LRESULT CALLBACK MC::_windowproc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 				{
 					// If we're idle, we need to temporarily enter settings state and bring up the settings UI
 					MC::setState(MCS_Settings);
-					McSettingsEditor settingsEdt;
-					int res = settingsEdt.doSettings();
+					SETTINGS_DISPOSITION res = doSettings(NULL);
 					MC::setState(MCS_Idle);
 					
 					// Reinitialize hooks if settings changed
 					if (res == settingsAccept)
 					{
-						McHookMgr::releaseKbHooks();
-						McHookMgr::initializeKbHooks();
+						MC::getProperties()->write();
 					}
+					McHookMgr::releaseKbHooks();
+					McHookMgr::initializeKbHooks();
 				}
 				else if (McWindowMgr::getMainW() != NULL)
 				{
