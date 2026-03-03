@@ -300,12 +300,23 @@ LRESULT McHookMgr::keyboardHookProc( int nCode, WPARAM wParam, LPARAM lParam )
 {
 	if (0 <= nCode)
 	{
+		KBDLLHOOKSTRUCT *kbHookStruct = reinterpret_cast<KBDLLHOOKSTRUCT *> (lParam);
+		int code = kbHookStruct->vkCode;
+
+		if (code == VK_TAB && ((GetAsyncKeyState(VK_LWIN) & 0x8000) != 0 || (GetAsyncKeyState(VK_RWIN) & 0x8000) != 0))
+		{
+			if (wParam == WM_KEYDOWN || wParam == WM_SYSKEYDOWN)
+			{
+				if (!MC::_incycle)
+				{
+					PostMessage(MC::_eventHwnd, WM_USER, WMMC_STARTMC, 0);
+				}
+			}
+			return 1;
+		}
+
 		if (!MC::_incycle)
 			return CallNextHookEx( NULL, nCode, wParam, lParam );
-
-		KBDLLHOOKSTRUCT *kbHookStruct = reinterpret_cast<KBDLLHOOKSTRUCT *> (lParam);
-
-		int code = kbHookStruct->vkCode;
 
 		if (code == VK_LWIN || code == VK_RWIN)
 		{
