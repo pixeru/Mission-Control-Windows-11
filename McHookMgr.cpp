@@ -315,6 +315,16 @@ LRESULT McHookMgr::keyboardHookProc( int nCode, WPARAM wParam, LPARAM lParam )
 				{
 					McWindowMgr::getMainW()->onFinish();
 				}
+
+				// Send a dummy keystroke (unmapped VK 0xFF) to prevent the Start Menu
+				// from showing up when the Windows key is released.
+				INPUT input[2] = { 0 };
+				input[0].type = INPUT_KEYBOARD;
+				input[0].ki.wVk = 0xFF;
+				input[1].type = INPUT_KEYBOARD;
+				input[1].ki.wVk = 0xFF;
+				input[1].ki.dwFlags = KEYEVENTF_KEYUP;
+				SendInput(2, input, sizeof(INPUT));
 			}
 			return 1;
 		}
