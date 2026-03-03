@@ -1,0 +1,31 @@
+﻿  McBackingW.cpp
+  McBgW.cpp
+  Emcee.cpp
+  McButtonW.cpp
+  McDesktopW.cpp
+  McFadingW.cpp
+  McHookMgr.cpp
+  McIconMgr.cpp
+  McLabelW.cpp
+  McMainW.cpp
+  McAnimationMgr.cpp
+  McColorTools.cpp
+  McDragMgr.cpp
+  McMonitorsMgr.cpp
+  McPilesMgr.cpp
+  McWindowMgr.cpp
+  McPropsMgr.cpp
+  McSettingsEditor.cpp
+  McHotKeyMgr.cpp
+  McTouchMgr.cpp
+  Generating Code...
+  Compiling...
+  McThumbW.cpp
+  McWItem.cpp
+  McWList.cpp
+  McZoomW.cpp
+  Generating Code...
+  McModernAppMgr.cpp
+  .NETFramework,Version=v4.7.2.AssemblyAttributes.cpp
+  McBackingW.obj : MSIL module encountered; incremental linking is disabled for MSIL; performing full link
+  Emcee.vcxproj -> E:\PC\Downloads\Emcee.Shareware 1.7 (x64)\x64\Debug\Emcee.Shareware.exe

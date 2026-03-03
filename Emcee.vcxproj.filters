@@ -1,0 +1,240 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Emcee.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="UIAnimationHelper.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McZoomW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McMainW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McBgW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McBaseW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McBackingW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McWItem.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McLabelW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McHotKeyMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McDragMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McColorTools.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McAnimationMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McMonitorsMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McPilesMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McPropsMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McTouchMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McWList.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McSettingsEditor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McHookMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McIconMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McButtonW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McDesktopW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McThumbW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McModernAppMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McWindowMgr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McRect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="McFadingW.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Resource Files</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Emcee.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McThumbW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McZoomW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McMainW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McBgW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McBackingW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McWItem.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McLabelW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McHotKeyMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McDragMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McColorTools.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McAnimationMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McMonitorsMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McPilesMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McPropsMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McTouchMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McWList.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McSettingsEditor.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McHookMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McIconMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McButtonW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McDesktopW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McModernAppMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McWindowMgr.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="McFadingW.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="Emcee.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="Emcee.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="settingsIcon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="black xbox.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="red xbox.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="vdIcon1.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="vdIcon2.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rshift_a.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="lshift_a.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="modernIcon.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="lshift.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="rshift.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+    <Image Include="Emcee.png">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <Manifest Include="Emcee.manifest">
+      <Filter>Resource Files</Filter>
+    </Manifest>
+  </ItemGroup>
+</Project>
