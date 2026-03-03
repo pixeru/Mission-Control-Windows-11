@@ -609,14 +609,47 @@ LRESULT CALLBACK MC::_windowproc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 			POINT pt;
 			GetCursorPos(&pt);
 			HMENU hMenu = CreatePopupMenu();
+			
+			HKEY hKey;
+			BOOL bRunAtStartup = FALSE;
+			if (RegOpenKeyEx(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", 0, KEY_READ, &hKey) == ERROR_SUCCESS)
+			{
+				if (RegQueryValueEx(hKey, L"MissionControl", NULL, NULL, NULL, NULL) == ERROR_SUCCESS)
+				{
+					bRunAtStartup = TRUE;
+				}
+				RegCloseKey(hKey);
+			}
+
+			AppendMenu(hMenu, MF_STRING | (bRunAtStartup ? MF_CHECKED : MF_UNCHECKED), 1002, L"Run at Startup");
+			AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
 			AppendMenu(hMenu, MF_STRING, 1001, L"Exit");
+			
 			SetForegroundWindow(hwnd);
 			int cmd = TrackPopupMenu(hMenu, TPM_RETURNCMD | TPM_NONOTIFY, pt.x, pt.y, 0, hwnd, NULL);
 			PostMessage(hwnd, WM_NULL, 0, 0);
 			DestroyMenu(hMenu);
+			
 			if (cmd == 1001)
 			{
 				MC::Exit(0);
+			}
+			else if (cmd == 1002)
+			{
+				if (RegOpenKeyEx(HKEY_CURRENT_USER, L"Software\\Microsoft\\Windows\\CurrentVersion\\Run", 0, KEY_WRITE, &hKey) == ERROR_SUCCESS)
+				{
+					if (bRunAtStartup)
+					{
+						RegDeleteValue(hKey, L"MissionControl");
+					}
+					else
+					{
+						WCHAR szPath[MAX_PATH];
+						GetModuleFileName(NULL, szPath, MAX_PATH);
+						RegSetValueEx(hKey, L"MissionControl", 0, REG_SZ, (BYTE*)szPath, (DWORD)(wcslen(szPath) + 1) * sizeof(WCHAR));
+					}
+					RegCloseKey(hKey);
+				}
 			}
 		}
 		return 0;
