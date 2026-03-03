@@ -39,6 +39,9 @@ using namespace std;
 #pragma comment( lib, "Crypt32.lib" )
 #pragma comment( lib, "Shcore.lib" )
 #pragma comment( lib, "MSCOREE.LIB" )
+#pragma comment( lib, "winmm.lib" )
+
+#include <Mmsystem.h>
 
 #if MC_LOGGING
 FILE*			MC::logFile = NULL; 
@@ -79,6 +82,8 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdSho
 {
 	size_t tInstance = reinterpret_cast<size_t>(hInstance);
 	srand( (unsigned int)tInstance );
+
+	timeBeginPeriod(1);
 
 	MC::setProcessId( GetCurrentProcessId( ) );
 	MC::CreateProperties( );
@@ -153,6 +158,9 @@ int WINAPI wWinMain( HINSTANCE hInstance, HINSTANCE, PWSTR pCmdLine, int nCmdSho
 	CoUninitialize( );
 	MC::DeleteProperties( );
 	MC::releaseIconManager( );
+
+	timeEndPeriod(1);
+	
 	MC::Exit(0);
 }
 
@@ -624,6 +632,7 @@ LRESULT CALLBACK MC::_windowproc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 				RegCloseKey(hKey);
 			}
 
+			AppendMenu(hMenu, MF_STRING, 1003, L"Settings");
 			AppendMenu(hMenu, MF_STRING | (bRunAtStartup ? MF_CHECKED : MF_UNCHECKED), 1002, L"Run at Startup");
 			AppendMenu(hMenu, MF_SEPARATOR, 0, NULL);
 			AppendMenu(hMenu, MF_STRING, 1001, L"Exit");
@@ -652,6 +661,29 @@ LRESULT CALLBACK MC::_windowproc( HWND hwnd, UINT uMsg, WPARAM wParam, LPARAM lP
 						RegSetValueEx(hKey, L"MissionControl", 0, REG_SZ, (BYTE*)szPath, (DWORD)(wcslen(szPath) + 1) * sizeof(WCHAR));
 					}
 					RegCloseKey(hKey);
+				}
+			}
+			else if (cmd == 1003)
+			{
+				if (MC::getState() == MCS_Idle)
+				{
+					// If we're idle, we need to temporarily enter settings state and bring up the settings UI
+					MC::setState(MCS_Settings);
+					McSettingsEditor settingsEdt;
+					int res = settingsEdt.doSettings();
+					MC::setState(MCS_Idle);
+					
+					// Reinitialize hooks if settings changed
+					if (res == settingsAccept)
+					{
+						McHookMgr::releaseKbHooks();
+						McHookMgr::initializeKbHooks();
+					}
+				}
+				else if (McWindowMgr::getMainW() != NULL)
+				{
+					// If the main window is active, send it the settings message to handle properly
+					PostMessage(McWindowMgr::getMainW()->getHwnd(), WM_USER, WMMC_DOSETTINGS, 0);
 				}
 			}
 		}

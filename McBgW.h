@@ -60,7 +60,6 @@ private:
 	void deleteDrawingTools( );
 	McButtonW *taskViewB;
 	McButtonW *startB;
-	McButtonW *settingsB;
 	McButtonW *leftArrowB;
 	McButtonW *rightArrowB;
 };

@@ -42,10 +42,6 @@ McBgW::McBgW( ) : McBaseW( )
 
 	forty = (int) (_DEFAULT_ICON_SIZE * McMonitorsMgr::getMainMonitor( )->getObjectScale( ));
 
-	MC::loadBitmap( IDI_SETTINGS, &bm1 );
-	MC::loadBitmap( IDI_SETTINGS, &bm2 );
-	settingsB = McWindowMgr::allocateButtonW( L"Settings", this, forty + 10, forty + 10, bm1, bm2, WMMC_DOSETTINGS );
-
 	MC::loadBitmap( IDI_MODERN, &bm1 );
 	MC::loadBitmap( IDI_MODERN, &bm2 );
 	startB = McWindowMgr::allocateButtonW( L"Start", this, forty + 10, forty + 10, bm1, bm2, WMMC_DOSTART );
@@ -68,7 +64,6 @@ McBgW::~McBgW( )
 {
 	Deactivate( );
 	McWindowMgr::freeButtonW( taskViewB );
-	McWindowMgr::freeButtonW( settingsB );
 	McWindowMgr::freeButtonW( startB );
 	McWindowMgr::freeButtonW( leftArrowB );
 	McWindowMgr::freeButtonW( rightArrowB );
@@ -85,7 +80,6 @@ void McBgW::Activate( )
 		SetLayeredWindowAttributes( getHwnd( ), McModernAppMgr::GetBgColor( ), 0, LWA_COLORKEY );
 		createDrawingTools( );
 		COLORREF bgColor = McModernAppMgr::GetBgColor( );
-		settingsB->Activate( bgColor, McModernAppMgr::GetAppBarColor( ) );
 		startB->Activate( bgColor, McModernAppMgr::GetAppBarColor( ) );
 		taskViewB->Activate( bgColor, McModernAppMgr::GetAppBarColor( ) );
 		arrowsNeeded = FALSE;
@@ -102,7 +96,6 @@ void McBgW::Deactivate( )
 	{
 		isActivated = FALSE;
 		ShowWindow( getHwnd( ), SW_HIDE );
-		settingsB->Deactivate( );
 		startB->Deactivate( );
 		taskViewB->Deactivate( );
 		leftArrowB->Deactivate( );
@@ -325,7 +318,6 @@ void McBgW::doRepaint( BOOL positionButtons )
 			mR.left, (stripe > 0 ? w10offset-11 : -9 ) + bottom - forty );
 	if (taskViewB && !MC::inTabletMode( ) )
 		taskViewB->Show( mR.left+mR.getWidth() - forty - 10, (stripe > 0 ? w10offset-11 : -9) + bottom - forty );
-	settingsB->Show(mR.left + mR.getWidth() - forty - 10, mR.top  );
 	
 }
 
@@ -333,7 +325,6 @@ void McBgW::lowerButtons( )
 {
 	if (taskViewB && !MC::inTabletMode( )) 	taskViewB->Lower( );
 	if (startB) startB->Lower( );
-	if (settingsB) settingsB->Lower( );
 	if (leftArrowB && arrowsNeeded ) leftArrowB->Lower( );
 	if (rightArrowB && arrowsNeeded ) rightArrowB->Lower( );
 }
@@ -341,7 +332,6 @@ void McBgW::raiseButtons( )
 {
 	if (taskViewB && !MC::inTabletMode( )) taskViewB->Raise( );
 	if (startB) startB->Raise( );
-	if (settingsB) settingsB->Raise( );
 	if (leftArrowB && arrowsNeeded ) leftArrowB->Raise( );
 	if (rightArrowB && arrowsNeeded ) rightArrowB->Raise( );
 
@@ -350,7 +340,6 @@ void McBgW::hideButtons( )
 {
 	if (taskViewB && !MC::inTabletMode( )) taskViewB->Hide( );
 	if (startB) startB->Hide( );
-	if (settingsB) settingsB->Hide( );
 	if (leftArrowB) leftArrowB->Hide( );
 	if (rightArrowB) rightArrowB->Hide( );
 }
