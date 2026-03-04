@@ -78,12 +78,9 @@ public:
 	static int getZorder( HWND appHwnd );
 	static int getHoverTime( )
 	{
-		int old = hoverTime;
-		hoverTime = 50;
-		return old;
+		return 1;
 	}
 	static void setHoverTime( int ht )
 	{
-		hoverTime = ht;
 	}
 };
