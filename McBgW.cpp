@@ -216,7 +216,7 @@ LRESULT McBgW::HandleMessage( UINT uMsg, WPARAM wParam, LPARAM lParam )
 					SolidBrush textBrush( Color( 255, 255, 255, 255 ) );
 					Pen currentPen( Color( 255, 76, 194, 255 ), 2.0f );
 					Pen borderPen( Color( 120, 180, 180, 180 ), 1.0f );
-					Font font( L"Segoe UI", 9.5f * objScale );
+					Gdiplus::Font font( L"Segoe UI", 9.5f * objScale, Gdiplus::FontStyleRegular, Gdiplus::UnitPoint );
 					StringFormat sf;
 					sf.SetAlignment( StringAlignmentCenter );
 					sf.SetLineAlignment( StringAlignmentCenter );

@@ -386,4 +386,3 @@ UIAnimation_GetStoryboardTag
     return hr;
 }
 
-#endif // __UIAnimationHelper_h__
