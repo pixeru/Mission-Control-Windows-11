@@ -478,8 +478,38 @@ At line:1 char:83
 Always run
 Exit code 1
 Checked command status
-Running command
+Ran background command
+Open
 …\Mission Control Windows > rm strip_headers* ; git add . ; git commit -m "Cleanup: remove attribution stripping scripts"
+warning: in the working copy of 'content_log_untitled_conversation.txt', LF will be replaced by CRLF the next time Git touches it
+[main 81a5b8e] Cleanup: remove attribution stripping scripts
+ 7 files changed, 80 insertions(+), 302 deletions(-)
+ delete mode 100644 strip_headers.py
+ delete mode 100644 strip_headers_v2.py
+ delete mode 100644 strip_headers_v3.py
+ delete mode 100644 strip_headers_v4.py
+ delete mode 100644 strip_headers_v5.py
+ delete mode 100644 strip_headers_v6.py
 Always run
-Cancel
-Running..
+Exit code 0
+Checked command status
+
+I have removed all leading attribution comments from every 
+.cpp
+ and 
+.h
+ file in the project.
+
+Summary of Actions:
+Header Stripping: Every source file was processed to strip out the leading comment block that contained project attributions and licensing information.
+Code Preservation: The stripping was performed aggressively but carefully to ensure that actual code (like #pragma once, #include, or logical comments within the code) remained untouched.
+Git Commits:
+remove all attribution comments: All source files were updated to remove the headers.
+Cleanup: remove attribution stripping scripts: Temporary helper scripts were deleted.
+
+The codebase is now clean of these specific attributions. You can verify this in any source file, such as 
+Emcee.h
+.
+
+Good
+Bad
