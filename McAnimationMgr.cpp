@@ -88,7 +88,7 @@ HRESULT McAnimationMgr::Initialize()
 	return hr;
 }
 
-HRESULT McAnimationMgr::doAnimate( HWND hwnd, double initialValue, double timeDivisor )
+HRESULT McAnimationMgr::doAnimate( HWND hwnd, double initialValue, double timeDivisor, double endingValue )
 {
 
 	McWindowMgr::getMainW( )->initLastValue( );
@@ -98,7 +98,8 @@ HRESULT McAnimationMgr::doAnimate( HWND hwnd, double initialValue, double timeDi
 
 	HRESULT hr = animationManager->CreateAnimationVariable( initialValue, &animationVariable );
 
-	double endingValue = ( initialValue < 0.5 ? 1.0 : 0.0 );
+	if (endingValue < 0.0)
+		endingValue = ( initialValue < 0.5 ? 1.0 : 0.0 );
 
 	setAnimatedInfo( hwnd, animationVariable );
 

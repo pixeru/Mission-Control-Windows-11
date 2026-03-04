@@ -35,7 +35,7 @@ public:
 
 	McAnimationMgr();
 	HRESULT Initialize();
-	HRESULT doAnimate( HWND, double, double = 1.0 );
+	HRESULT doAnimate( HWND, double, double = 1.0, double = -1.0 );
 	~McAnimationMgr();
 
 private:

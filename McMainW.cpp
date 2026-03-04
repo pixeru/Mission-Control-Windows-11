@@ -156,7 +156,7 @@ LRESULT McMainW::HandleMessage(UINT uMsg, WPARAM wParam, LPARAM lParam)
 		if (!MC::matchHwnd( getHwnd( ) ))
 			return DefWindowProc( getHwnd( ), uMsg, wParam, lParam );
 
-		if ( MC::getState() == MCS_Display )
+		if ( MC::getState() == MCS_Display || MC::getState() == MCS_TransitionDown || MC::getState() == MCS_TransitionOver )
 			if (onLeftButtonUp( (wParam&MK_CONTROL)!=0, GET_X_LPARAM(lParam), GET_Y_LPARAM(lParam)))
 				return 0;
 
@@ -363,7 +363,26 @@ void McMainW::doQuitAndInject( WPARAM vkKey )
 
 BOOL  McMainW::onLeftButtonUp( BOOL control, int x, int y )
 {
-	McWItem **dtItems = MC::getWindowList( )->getDesktopItem( );
+	McWList *windowList = MC::getWindowList();
+	list<McWItem *> *itemList = windowList->getItemList( );
+
+	if ( MC::getState() == MCS_TransitionDown || MC::getState() == MCS_TransitionOver || MC::getState() == MCS_Display )
+	{
+		for (list<McWItem *>::reverse_iterator rit = itemList->rbegin(); rit != itemList->rend(); ++rit)
+		{
+			McWItem *item = *rit;
+			if (item->getCurRect()->contains(x, y))
+			{
+				if (item->getThumbWindow())
+				{
+					item->getThumbWindow()->onSelectWindow( control );
+					return TRUE;
+				}
+			}
+		}
+	}
+
+	McWItem **dtItems = windowList->getDesktopItem( );
 	POINT *offsets = McMonitorsMgr::getMainMonitor( )->getOffsets( );
 	x -= offsets->x;
 	y -= offsets->y;
@@ -457,8 +476,14 @@ void McMainW::onTransitionUp()
 
 	MC::setState( MCS_TransitionUp );
 
-	calcFrame( 0.0002);
-	MC::getMC( )->getAnimationMgr( )->doAnimate( getHwnd( ), 0.0, 1.2 );
+	double startval = 0.0;
+	if (lastValue > 0.0 && lastValue < 1.0)
+		startval = 1.0 - lastValue;
+
+	if (startval < 0.0) startval = 0.0;
+
+	calcFrame( startval );
+	MC::getMC( )->getAnimationMgr( )->doAnimate( getHwnd( ), startval, 1.2, 1.0 );
 }
 
 void McMainW::onTransitionDown()
