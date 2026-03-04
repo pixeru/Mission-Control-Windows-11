@@ -48,7 +48,7 @@ struct McPropData
 	{
 		multiMonitor		= TRUE;
 		mouseCornerActivate	= 0;
-		disableLabels		= FALSE;
+		disableLabels		= TRUE;
 #if MC_DESKTOPS
 		showAllDesktops		= FALSE;
 #endif
@@ -61,7 +61,7 @@ struct McPropData
 		hotKeyCode			= _HK_DEFAULT;
 		animationSpeed		= 5;
 		hardwareAcceleration= TRUE;
-		stackWindows		= FALSE;
+		stackWindows		= TRUE;
 
 		HKEY rootKey;
 		animationEffects = TRUE;
