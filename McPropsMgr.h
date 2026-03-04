@@ -61,6 +61,20 @@ struct McPropData
 		hotKeyCode			= _HK_DEFAULT;
 		animationSpeed		= 5;
 		hardwareAcceleration= TRUE;
+		stackWindows		= FALSE;
+
+		HKEY rootKey;
+		animationEffects = TRUE;
+		if (RegOpenKeyExW(HKEY_CURRENT_USER, L"Control Panel\\Desktop\\WindowMetrics", 0, KEY_QUERY_VALUE, &rootKey) == ERROR_SUCCESS)
+		{
+			wchar_t value[256] = { 0 };
+			DWORD size = sizeof(256*sizeof(wchar_t));
+			if (RegQueryValueExW(rootKey, L"MinAnimate", NULL, NULL, (LPBYTE)&value, &size) == ERROR_SUCCESS)
+			{
+				animationEffects = (value[0] != L'0');
+			}
+			RegCloseKey(rootKey);
+		}
 	}
 
 	~McPropData()
@@ -93,7 +107,9 @@ struct McPropData
 		dtBgColor = d->dtBgColor;
 		dtAutoColor = d->dtAutoColor;
 		animationSpeed = d->animationSpeed;
+		animationEffects = d->animationEffects;
 		hardwareAcceleration = d->hardwareAcceleration;
+		stackWindows = d->stackWindows;
 #if MC_DESKTOPS
 		showAllDesktops = d->showAllDesktops;
 #endif
@@ -121,7 +137,9 @@ struct McPropData
 	BOOL			dtAutoColor;
 	COLORREF		dtBgColor;
 	int				animationSpeed;
+	BOOL			animationEffects;
 	BOOL			hardwareAcceleration;
+	BOOL			stackWindows;
 	list<McGroup*>	masterList;
 	list<string>	excludeList;
 };
@@ -155,6 +173,7 @@ public:
 #endif
 	BOOL getUseAppBar( )			{ return data->useAppBar;	}
 	BOOL getHardwareAcceleration( )	{ return data->hardwareAcceleration; }
+	BOOL getStackWindows( )			{ return data->stackWindows; }
 	int  getMouseCornerActivate()	{ return data->mouseCornerActivate; }
 	long getHotKeyCode()			{ return data->hotKeyCode; }
 
@@ -164,6 +183,7 @@ public:
 	BOOL		getDtAutoColor( )		{ return data->dtAutoColor;	}
 	double		getAnimationSpeed()		
 	{ 
+		if (!data->animationEffects) return 0.0001;
 		return
 			.65*( .8 - (data->animationSpeed - 1)*0.1);
 			//.92*pow( .8 - (data->animationSpeed - 1)*0.1, 1.25 );

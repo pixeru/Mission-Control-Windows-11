@@ -87,6 +87,8 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 	System::Windows::Forms::CheckBox^ multiMonitor;
 	System::Windows::Forms::CheckBox^  disableLabelCB;
 	System::Windows::Forms::CheckBox^  hardwareAccelCB;
+	System::Windows::Forms::CheckBox^  animationEffectsCB;
+	System::Windows::Forms::CheckBox^  stackWindowsCB;
 	System::Windows::Forms::FlowLayoutPanel^	hotKeyPanel;
 	System::Windows::Forms::RadioButton^		altButton;
 	System::Windows::Forms::RadioButton^		ctrlButton;
@@ -164,6 +166,8 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 			multiMonitor = (gcnew System::Windows::Forms::CheckBox( ));
 		disableLabelCB = (gcnew System::Windows::Forms::CheckBox( ));
 			hardwareAccelCB = (gcnew System::Windows::Forms::CheckBox( ));
+			animationEffectsCB = (gcnew System::Windows::Forms::CheckBox( ));
+			stackWindowsCB = (gcnew System::Windows::Forms::CheckBox( ));
 		hotKeyPanel = (gcnew System::Windows::Forms::FlowLayoutPanel( ));
 		keyCombo = (gcnew System::Windows::Forms::ComboBox( ));
 		modifierBox = (gcnew System::Windows::Forms::FlowLayoutPanel( ));
@@ -326,6 +330,8 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 		actTickBoxPanel->Controls->Add( allowHotCornerCB );
 		actTickBoxPanel->Controls->Add( disableLabelCB );
 			actTickBoxPanel->Controls->Add( hardwareAccelCB );
+			actTickBoxPanel->Controls->Add( animationEffectsCB );
+			actTickBoxPanel->Controls->Add( stackWindowsCB );
 		if (MC::getMD( ))
 		{
 			actTickBoxPanel->Controls->Add( multiMonitor );
@@ -348,6 +354,22 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 			hardwareAccelCB->TabIndex = 3;
 			hardwareAccelCB->Text = L"Enable Hardware Acceleration";
 			hardwareAccelCB->CheckedChanged += gcnew System::EventHandler( this, &McSettingsEditor::hardwareAccelCB_CheckedChanged );
+
+			// animationEffectsCB
+			animationEffectsCB->AutoSize = true;
+			animationEffectsCB->Font = hardwareAccelCB->Font;
+			animationEffectsCB->Name = L"animationEffectsCB";
+			animationEffectsCB->TabIndex = 24;
+			animationEffectsCB->Text = L"Enable Animation Effects";
+			animationEffectsCB->CheckedChanged += gcnew System::EventHandler( this, &McSettingsEditor::animationEffectsCB_CheckedChanged );
+			// stackWindowsCB
+			stackWindowsCB->AutoSize = true;
+			stackWindowsCB->Font = (gcnew System::Drawing::Font( L"Segoe UI", 11.75F*scale/*9.75*/, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0) ));
+			stackWindowsCB->Name = L"stackWindowsCB";
+			stackWindowsCB->TabIndex = 4;
+			stackWindowsCB->Text = L"Stack Windows";
+			stackWindowsCB->CheckedChanged += gcnew System::EventHandler( this, &McSettingsEditor::stackWindowsCB_CheckedChanged );
 		// allowHotCornerCB
 		allowHotCornerCB->AutoSize = true;
 		allowHotCornerCB->Font = (gcnew System::Drawing::Font( L"Segoe UI", 11.75F*scale/*9.75*/, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -936,6 +958,8 @@ private:
 	System::Void allowHotCornerCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	System::Void disableLabelCB_CheckChanged(System::Object^  sender, System::EventArgs^  e);
 	System::Void hardwareAccelCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	System::Void animationEffectsCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
+	System::Void stackWindowsCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 
 	System::Void autoColorCheckCB_CheckedChanged( System::Object^  sender, System::EventArgs^  e );
 	System::Void colorPick_Click( System::Object^  sender, System::EventArgs^  e );

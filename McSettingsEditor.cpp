@@ -82,6 +82,18 @@ System::Void McSettingsEditor::hardwareAccelCB_CheckedChanged(System::Object^  s
 	data->hardwareAcceleration = checked;
 }
 
+System::Void McSettingsEditor::animationEffectsCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+{
+	BOOL checked = animationEffectsCB->Checked == true ? TRUE : FALSE;
+	data->animationEffects = checked;
+}
+
+System::Void McSettingsEditor::stackWindowsCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+{
+	BOOL checked = stackWindowsCB->Checked == true ? TRUE : FALSE;
+	data->stackWindows = checked;
+}
+
 System::Void McSettingsEditor::autoColorCheckCB_CheckedChanged( System::Object^  sender, System::EventArgs^  e )
 {
 	BOOL checked = autoColorCheck->Checked == true ? TRUE : FALSE;
@@ -462,6 +474,8 @@ void McSettingsEditor::displayData( )
 	allowHotCornerCB->Checked = data->mouseCornerActivate ? true : false;
 	disableLabelCB->Checked = data->disableLabels ? true : false;
    hardwareAccelCB->Checked = data->hardwareAcceleration ? true : false;
+   animationEffectsCB->Checked = data->animationEffects ? true : false;
+   stackWindowsCB->Checked = data->stackWindows ? true : false;
 #if MC_DESKTOPS
 	showAllDesktops->Checked = data->showAllDesktops ? true : false;
 #endif
