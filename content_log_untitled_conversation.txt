@@ -1,132 +1,407 @@
-Thought for 6s
-
-Removing Copyright Information
-
-I'm working on removing the copyright notice from the recently added attributions. I need to update the headers in all source files, as well as the README.TXT file. The goal is to ensure this specific line isn't present, reflecting the lack of copyright.
-
-Refining Attribution Information
-
-I've decided to eliminate the copyright line from the code attribution, leaving just the core information about the source and development history. I'll need to update a script, so I can ensure the code will not contain the copyright line and its associated information.
-
 Edited
-remove_copyright.py
-+51
+strip_headers.py
++49
 -0
 Ran background command
 Open
-…\Mission Control Windows > python remove_copyright.py
-Removing copyright line from Emcee.cpp
-Removing copyright line from Emcee.h
-Removing copyright line from McAnimationMgr.h
-Removing copyright line from McBackingW.cpp
-Removing copyright line from McBackingW.h
-Removing copyright line from McBgW.cpp
-Removing copyright line from McBgW.h
-Removing copyright line from McButtonW.cpp
-Removing copyright line from McButtonW.h
-Removing copyright line from McColorTools.cpp
-Removing copyright line from McColorTools.h
-Removing copyright line from McDesktopW.cpp
-Removing copyright line from McDesktopW.h
-Removing copyright line from McDragMgr.cpp
-Removing copyright line from McDragMgr.h
-Removing copyright line from McFadingW.cpp
-Removing copyright line from McFadingW.h
-Removing copyright line from McHookMgr.cpp
-Removing copyright line from McHookMgr.h
-Removing copyright line from McHotKeyMgr.cpp
-Removing copyright line from McHotKeyMgr.h
-Removing copyright line from McIconMgr.cpp
-Removing copyright line from McIconMgr.h
-Removing copyright line from McLabelW.cpp
-Removing copyright line from McLabelW.h
-Removing copyright line from McMainW.cpp
-Removing copyright line from McMainW.h
-Removing copyright line from McModernAppMgr.cpp
-Removing copyright line from McModernAppMgr.h
-Removing copyright line from McMonitorsMgr.cpp
-Removing copyright line from McMonitorsMgr.h
-Removing copyright line from McPilesMgr.cpp
-Removing copyright line from McPilesMgr.h
-Removing copyright line from McPropsMgr.cpp
-Removing copyright line from McPropsMgr.h
-Removing copyright line from McRect.h
-Removing copyright line from McSettingsEditor.cpp
-Removing copyright line from McSettingsEditor.h
-Removing copyright line from McThumbW.cpp
-Removing copyright line from McThumbW.h
-Removing copyright line from McTouchMgr.cpp
-Removing copyright line from McTouchMgr.h
-Removing copyright line from McWindowMgr.cpp
-Removing copyright line from McWindowMgr.h
-Removing copyright line from McWItem.cpp
-Removing copyright line from McWItem.h
-Removing copyright line from McWList.cpp
-Removing copyright line from McWList.h
-Removing copyright line from McZoomW.cpp
-Removing copyright line from McZoomW.h
-Removing copyright line from README.TXT
-Removing copyright line from Resource.h
+…\Mission Control Windows > python strip_headers.py
+Removing 8 lines of header from Emcee.cpp
+Removing 2 lines of header from McAnimationMgr.cpp
+Removing 8 lines of header from McBackingW.cpp
+Removing 8 lines of header from McBgW.cpp
+Removing 8 lines of header from McButtonW.cpp
+Removing 8 lines of header from McColorTools.cpp
+Removing 9 lines of header from McDesktopW.cpp
+Removing 8 lines of header from McDragMgr.cpp
+Removing 8 lines of header from McFadingW.cpp
+Removing 8 lines of header from McHookMgr.cpp
+Removing 8 lines of header from McHotKeyMgr.cpp
+Removing 8 lines of header from McIconMgr.cpp
+Removing 8 lines of header from McLabelW.cpp
+Removing 8 lines of header from McMainW.cpp
+Removing 8 lines of header from McModernAppMgr.cpp
+Removing 8 lines of header from McMonitorsMgr.cpp
+Removing 8 lines of header from McPilesMgr.cpp
+Removing 8 lines of header from McPilesMgr.h
+Removing 8 lines of header from McPropsMgr.cpp
+Removing 8 lines of header from McSettingsEditor.cpp
+Removing 8 lines of header from McThumbW.cpp
+Removing 8 lines of header from McTouchMgr.cpp
+Removing 8 lines of header from McWindowMgr.cpp
+Removing 9 lines of header from McWItem.cpp
+Removing 8 lines of header from McWList.cpp
+Removing 8 lines of header from McZoomW.cpp
+Removing 4 lines of header from stdafx.cpp
+Removing 5 lines of header from stdafx.h
+Removing 8 lines of header from UIAnimationHelper.h
 Always run
 Exit code 0
 Checked command status
 Analyzed
-Emcee.h#L1-15
+Emcee.h#L1-10
+Edited
+strip_headers_v2.py
++42
+-0
 Ran background command
 Open
-…\Mission Control Windows > git add . ; git commit -m "Remove copyright claims as requested by the developer while maintaining project attributions." ; rm remove_copyright.py ; rm temp_update.py ; rm /tmp/update_headers.py
-warning: in the working copy of 'content_log_untitled_conversation.txt', LF will be replaced by CRLF the next time Git touches it
-[main 3de5771] Remove copyright claims as requested by the developer while maintaining project attributions.
- 54 files changed, 633 insertions(+), 56 deletions(-)
- create mode 100644 content_log_untitled_conversation.txt
- create mode 100644 remove_copyright.py
-rm : Cannot find path 'E:\PC\Desktop\Mission Control Windows\temp_update.py' because it does not exist.
-At line:1 char:150
-+ ... t attributions." ; rm remove_copyright.py ; rm temp_update.py ; rm /t ...
-+                                                 ~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (E:\PC\Desktop\M...\temp_update.py:String) [Remove-Item], ItemNotFoundException
-    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
-
-rm : Cannot find path 'E:\tmp\update_headers.py' because it does not exist.
-At line:1 char:170
-+ ... m remove_copyright.py ; rm temp_update.py ; rm /tmp/update_headers.py
-+                                                 ~~~~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (E:\tmp\update_headers.py:String) [Remove-Item], ItemNotFoundException
-    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
+…\Mission Control Windows > python strip_headers_v2.py
+Always run
+Exit code 0
+Checked command status
+Analyzed
+Emcee.h#L1-10
+Ran background command
+Open
+…\Mission Control Windows > Get-Content "Emcee.h" -Encoding Byte -TotalCount 100 | ForEach-Object { "{0:X2}" -f $_ } | Join-String -Separator " "
+Join-String : The term 'Join-String' is not recognized as the name of a cmdlet, function, script file, or operable program. Check the spelling of the name, or if a path was included, verify that the path is correct and try again.
+At line:1 char:92
++ ... alCount 100 | ForEach-Object { "{0:X2}" -f $_ } | Join-String -Separa ...
++                                                       ~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (Join-String:String) [], CommandNotFoundException
+    + FullyQualifiedErrorId : CommandNotFoundException
 Always run
 Exit code 1
 Checked command status
 Ran background command
 Open
-…\Mission Control Windows > rm remove_copyright.py ; git add . ; git commit -m "Cleanup: remove temporary scripts."
-rm : Cannot find path 'E:\PC\Desktop\Mission Control Windows\remove_copyright.py' because it does not exist.
-At line:1 char:1
-+ rm remove_copyright.py ; git add . ; git commit -m "Cleanup: remove t ...
-+ ~~~~~~~~~~~~~~~~~~~~~~
-    + CategoryInfo          : ObjectNotFound: (E:\PC\Desktop\M...ve_copyright.py:String) [Remove-Item], ItemNotFoundException
-    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
-
-warning: in the working copy of 'content_log_untitled_conversation.txt', LF will be replaced by CRLF the next time Git touches it
-[main dbd81db] Cleanup: remove temporary scripts.
- 2 files changed, 25 insertions(+), 51 deletions(-)
- delete mode 100644 remove_copyright.py
+…\Mission Control Windows > [System.IO.File]::ReadAllBytes("e:\PC\Desktop\Mission Control Windows\Emcee.h") | select -first 10 | ForEach-Object { $_.ToString("X2") }
+23
+70
+72
+61
+67
+6D
+61
+20
+6F
+6E
 Always run
 Exit code 0
 Checked command status
-
-I have removed all copyright lines from the project as requested.
-
-Updates:
-Copyright Removal: The line // Copyright (c) pixeru. All rights reserved. has been removed from all source code files and 
-README.TXT
-.
-Original Copyright removal: I also ensured that any remaining original copyright lines were removed to comply with your request.
-Attributions Retained: The attribution to you as the primary developer for Windows 11 and the credit to Emcee as the original source remain intact in the headers.
-Repository Cleaned: Temporary scripts used for the bulk update have been deleted, and the changes are committed to your git history.
-
-You can verify the change in 
-Emcee.h
- or any other source file.
-
-Good
-Bad
+Edited
+strip_headers_v3.py
++42
+-0
+Ran background command
+Open
+…\Mission Control Windows > python strip_headers_v3.py
+Stripping 0 header lines from Emcee.cpp
+Stripping 0 header lines from Emcee.h
+Stripping 0 header lines from McAnimationMgr.cpp
+Stripping 0 header lines from McAnimationMgr.h
+Stripping 0 header lines from McBackingW.cpp
+Stripping 0 header lines from McBackingW.h
+Stripping 0 header lines from McBaseW.h
+Stripping 0 header lines from McBgW.cpp
+Stripping 0 header lines from McBgW.h
+Stripping 0 header lines from McButtonW.cpp
+Stripping 0 header lines from McButtonW.h
+Stripping 0 header lines from McColorTools.cpp
+Stripping 0 header lines from McColorTools.h
+Stripping 0 header lines from McDesktopW.cpp
+Stripping 0 header lines from McDesktopW.h
+Stripping 0 header lines from McDragMgr.cpp
+Stripping 0 header lines from McDragMgr.h
+Stripping 0 header lines from McFadingW.cpp
+Stripping 0 header lines from McFadingW.h
+Stripping 0 header lines from McHookMgr.cpp
+Stripping 0 header lines from McHookMgr.h
+Stripping 0 header lines from McHotKeyMgr.cpp
+Stripping 0 header lines from McHotKeyMgr.h
+Stripping 0 header lines from McIconMgr.cpp
+Stripping 0 header lines from McIconMgr.h
+Stripping 0 header lines from McLabelW.cpp
+Stripping 0 header lines from McLabelW.h
+Stripping 0 header lines from McMainW.cpp
+Stripping 0 header lines from McMainW.h
+Stripping 0 header lines from McModernAppMgr.cpp
+Stripping 0 header lines from McModernAppMgr.h
+Stripping 0 header lines from McMonitorsMgr.cpp
+Stripping 0 header lines from McMonitorsMgr.h
+Stripping 0 header lines from McPilesMgr.cpp
+Stripping 0 header lines from McPilesMgr.h
+Stripping 0 header lines from McPropsMgr.cpp
+Stripping 0 header lines from McPropsMgr.h
+Stripping 0 header lines from McRect.h
+Stripping 0 header lines from McSettingsEditor.cpp
+Stripping 0 header lines from McSettingsEditor.h
+Stripping 0 header lines from McThumbW.cpp
+Stripping 0 header lines from McThumbW.h
+Stripping 0 header lines from McTouchMgr.cpp
+Stripping 0 header lines from McTouchMgr.h
+Stripping 0 header lines from McWindowMgr.cpp
+Stripping 0 header lines from McWindowMgr.h
+Stripping 0 header lines from McWItem.cpp
+Stripping 0 header lines from McWItem.h
+Stripping 0 header lines from McWList.cpp
+Stripping 0 header lines from McWList.h
+Stripping 0 header lines from McZoomW.cpp
+Stripping 0 header lines from McZoomW.h
+Stripping 0 header lines from Resource.h
+Stripping 0 header lines from stdafx.cpp
+Stripping 0 header lines from stdafx.h
+Stripping 0 header lines from targetver.h
+Stripping 0 header lines from UIAnimationHelper.h
+Always run
+Exit code 0
+Checked command status
+Analyzed
+Emcee.h#L1-10
+Edited
+strip_headers_v4.py
++57
+-0
+Ran background command
+Open
+…\Mission Control Windows > python strip_headers_v4.py
+No header comments found in Emcee.cpp
+No header comments found in Emcee.h
+No header comments found in McAnimationMgr.cpp
+No header comments found in McAnimationMgr.h
+No header comments found in McBackingW.cpp
+No header comments found in McBackingW.h
+No header comments found in McBaseW.h
+No header comments found in McBgW.cpp
+No header comments found in McBgW.h
+No header comments found in McButtonW.cpp
+No header comments found in McButtonW.h
+No header comments found in McColorTools.cpp
+No header comments found in McColorTools.h
+No header comments found in McDesktopW.cpp
+No header comments found in McDesktopW.h
+No header comments found in McDragMgr.cpp
+No header comments found in McDragMgr.h
+No header comments found in McFadingW.cpp
+No header comments found in McFadingW.h
+No header comments found in McHookMgr.cpp
+No header comments found in McHookMgr.h
+No header comments found in McHotKeyMgr.cpp
+No header comments found in McHotKeyMgr.h
+No header comments found in McIconMgr.cpp
+No header comments found in McIconMgr.h
+No header comments found in McLabelW.cpp
+No header comments found in McLabelW.h
+No header comments found in McMainW.cpp
+No header comments found in McMainW.h
+No header comments found in McModernAppMgr.cpp
+No header comments found in McModernAppMgr.h
+No header comments found in McMonitorsMgr.cpp
+No header comments found in McMonitorsMgr.h
+No header comments found in McPilesMgr.cpp
+No header comments found in McPilesMgr.h
+No header comments found in McPropsMgr.cpp
+No header comments found in McPropsMgr.h
+No header comments found in McRect.h
+No header comments found in McSettingsEditor.cpp
+No header comments found in McSettingsEditor.h
+No header comments found in McThumbW.cpp
+No header comments found in McThumbW.h
+No header comments found in McTouchMgr.cpp
+No header comments found in McTouchMgr.h
+No header comments found in McWindowMgr.cpp
+No header comments found in McWindowMgr.h
+No header comments found in McWItem.cpp
+No header comments found in McWItem.h
+No header comments found in McWList.cpp
+No header comments found in McWList.h
+No header comments found in McZoomW.cpp
+No header comments found in McZoomW.h
+No header comments found in Resource.h
+No header comments found in stdafx.cpp
+No header comments found in stdafx.h
+No header comments found in targetver.h
+No header comments found in UIAnimationHelper.h
+Always run
+Exit code 0
+Checked command status
+Analyzed
+Emcee.h#L1-10
+Edited
+strip_headers_v5.py
++55
+-0
+Ran background command
+Open
+…\Mission Control Windows > python strip_headers_v5.py
+No header stripping performed on Emcee.cpp
+No header stripping performed on Emcee.h
+No header stripping performed on McAnimationMgr.cpp
+No header stripping performed on McAnimationMgr.h
+No header stripping performed on McBackingW.cpp
+No header stripping performed on McBackingW.h
+No header stripping performed on McBaseW.h
+No header stripping performed on McBgW.cpp
+No header stripping performed on McBgW.h
+No header stripping performed on McButtonW.cpp
+No header stripping performed on McButtonW.h
+No header stripping performed on McColorTools.cpp
+No header stripping performed on McColorTools.h
+No header stripping performed on McDesktopW.cpp
+No header stripping performed on McDesktopW.h
+No header stripping performed on McDragMgr.cpp
+No header stripping performed on McDragMgr.h
+No header stripping performed on McFadingW.cpp
+No header stripping performed on McFadingW.h
+No header stripping performed on McHookMgr.cpp
+No header stripping performed on McHookMgr.h
+No header stripping performed on McHotKeyMgr.cpp
+No header stripping performed on McHotKeyMgr.h
+No header stripping performed on McIconMgr.cpp
+No header stripping performed on McIconMgr.h
+No header stripping performed on McLabelW.cpp
+No header stripping performed on McLabelW.h
+No header stripping performed on McMainW.cpp
+No header stripping performed on McMainW.h
+No header stripping performed on McModernAppMgr.cpp
+No header stripping performed on McModernAppMgr.h
+No header stripping performed on McMonitorsMgr.cpp
+No header stripping performed on McMonitorsMgr.h
+No header stripping performed on McPilesMgr.cpp
+No header stripping performed on McPilesMgr.h
+No header stripping performed on McPropsMgr.cpp
+No header stripping performed on McPropsMgr.h
+No header stripping performed on McRect.h
+No header stripping performed on McSettingsEditor.cpp
+No header stripping performed on McSettingsEditor.h
+No header stripping performed on McThumbW.cpp
+No header stripping performed on McThumbW.h
+No header stripping performed on McTouchMgr.cpp
+No header stripping performed on McTouchMgr.h
+No header stripping performed on McWindowMgr.cpp
+No header stripping performed on McWindowMgr.h
+No header stripping performed on McWItem.cpp
+No header stripping performed on McWItem.h
+No header stripping performed on McWList.cpp
+No header stripping performed on McWList.h
+No header stripping performed on McZoomW.cpp
+No header stripping performed on McZoomW.h
+No header stripping performed on Resource.h
+No header stripping performed on stdafx.cpp
+No header stripping performed on stdafx.h
+No header stripping performed on targetver.h
+No header stripping performed on UIAnimationHelper.h
+Always run
+Exit code 0
+Checked command status
+Analyzed
+Emcee.h#L1-10
+Ran background command
+Open
+…\Mission Control Windows > [System.IO.File]::ReadAllBytes("e:\PC\Desktop\Mission Control Windows\Emcee.h") | select -first 30 | ForEach-Object { $_.ToString("X2") }
+23
+70
+72
+61
+67
+6D
+61
+20
+6F
+6E
+63
+65
+0A
+2F
+2F
+20
+54
+48
+49
+53
+20
+43
+4F
+44
+45
+20
+41
+4E
+44
+20
+Always run
+Exit code 0
+Checked command status
+Edited
+strip_headers_v6.py
++61
+-0
+Ran background command
+Open
+…\Mission Control Windows > python strip_headers_v6.py
+Stripping header from Emcee.h
+Stripping header from McAnimationMgr.h
+Stripping header from McBackingW.h
+Stripping header from McBaseW.h
+Stripping header from McBgW.h
+Stripping header from McButtonW.h
+Stripping header from McColorTools.h
+Stripping header from McDesktopW.h
+Stripping header from McDragMgr.h
+Stripping header from McFadingW.h
+Stripping header from McHookMgr.h
+Stripping header from McHotKeyMgr.h
+Stripping header from McIconMgr.h
+Stripping header from McLabelW.h
+Stripping header from McMainW.h
+Stripping header from McModernAppMgr.h
+Stripping header from McMonitorsMgr.h
+Stripping header from McPropsMgr.h
+Stripping header from McRect.h
+Stripping header from McSettingsEditor.h
+Stripping header from McThumbW.h
+Stripping header from McTouchMgr.h
+Stripping header from McWindowMgr.h
+Stripping header from McWItem.h
+Stripping header from McWList.h
+Stripping header from McZoomW.h
+Stripping header from Resource.h
+Stripping header from stdafx.h
+Stripping header from targetver.h
+Stripping header from UIAnimationHelper.h
+Always run
+Exit code 0
+Checked command status
+Analyzed
+Emcee.h#L1-10
+Ran background command
+Open
+…\Mission Control Windows > python strip_headers_v6.py
+Stripping header from Emcee.h
+Stripping header from McAnimationMgr.h
+Stripping header from McBackingW.h
+Stripping header from McBaseW.h
+Stripping header from McBgW.h
+Stripping header from McButtonW.h
+Stripping header from McColorTools.h
+Stripping header from McDesktopW.h
+Stripping header from McDragMgr.h
+Stripping header from McFadingW.h
+Stripping header from McHookMgr.h
+Stripping header from McHotKeyMgr.h
+Stripping header from McIconMgr.h
+Stripping header from McLabelW.h
+Stripping header from McMainW.h
+Stripping header from McModernAppMgr.h
+Stripping header from McMonitorsMgr.h
+Stripping header from McPropsMgr.h
+Stripping header from McRect.h
+Stripping header from McSettingsEditor.h
+Stripping header from McThumbW.h
+Stripping header from McTouchMgr.h
+Stripping header from McWindowMgr.h
+Stripping header from McWItem.h
+Stripping header from McWList.h
+Stripping header from McZoomW.h
+Stripping header from Resource.h
+Stripping header from stdafx.h
+Stripping header from targetver.h
+Stripping header from UIAnimationHelper.h
+Always run
+Exit code 0
+Checked command status
+Running command
+…\Mission Control Windows > git add . ; git commit -m "remove all attribution comments" ; rm strip_headers* ; rm remove_copyright.py
+Always run
+Cancel
+Running

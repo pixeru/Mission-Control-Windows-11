@@ -1,12 +1,4 @@
 #pragma once
-// THIS CODE AND INFORMATION IS PROVIDED "AS IS" WITHOUT WARRANTY OF
-// ANY KIND, EITHER EXPRESSED OR IMPLIED, INCLUDING BUT NOT LIMITED TO
-// THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
-// PARTICULAR PURPOSE.
-//
-// Mission Control for Windows 11 by pixeru
-// Source code originally by Emcee (https://sourceforge.net/projects/mcsoft/)
-// Extensive development by pixeru due to discontinued development of original project.
 #define IDI_MC 101
 
 #define IDI_SETTINGS 110

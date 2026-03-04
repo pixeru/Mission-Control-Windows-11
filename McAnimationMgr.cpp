@@ -1,5 +1,3 @@
-// Thank You Microsoft
-
 #include "stdafx.h"
 #include "Emcee.h"
 #include "McAnimationMgr.h"
