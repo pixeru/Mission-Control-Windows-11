@@ -3,11 +3,10 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 //
-// YOU MAY USE THIS CODE AS YOU WISH FOR PERSONAL PURPOSES ONLY.
-// YOU MAY NOT USE THIS CODE IN PART OR IN WHOLE IN A COMMERCIAL PRODUCT
-// WITHOUT THE EXPRESS WRITTEN PERMISSION OF EMCEE APP SOFTWARE
-// 9622 SANDHILL ROAD, MIDDLETON, WI 53562
-// Copyright (c) Emcee App Software. All rights reserved
+// Mission Control for Windows 11 by pixeru
+// Source code originally by Emcee (https://sourceforge.net/projects/mcsoft/)
+// Extensive development by pixeru due to discontinued development of original project.
+// Copyright (c) pixeru. All rights reserved.
 #include "stdafx.h"
 #include "Emcee.h"
 #include "McZoomW.h"

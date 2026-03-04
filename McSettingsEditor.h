@@ -4,11 +4,10 @@
 // THE IMPLIED WARRANTIES OF MERCHANTABILITY AND/OR FITNESS FOR A
 // PARTICULAR PURPOSE.
 //
-// YOU MAY USE THIS CODE AS YOU WISH FOR PERSONAL PURPOSES ONLY.
-// YOU MAY NOT USE THIS CODE IN PART OR IN WHOLE IN A COMMERCIAL PRODUCT
-// WITHOUT THE EXPRESS WRITTEN PERMISSION OF EMCEE APP SOFTWARE
-// 9622 SANDHILL ROAD, MIDDLETON, WI 53562
-// Copyright (c) Emcee App Software. All rights reserved
+// Mission Control for Windows 11 by pixeru
+// Source code originally by Emcee (https://sourceforge.net/projects/mcsoft/)
+// Extensive development by pixeru due to discontinued development of original project.
+// Copyright (c) pixeru. All rights reserved.
 #include "stdafx.h"
 #include "Emcee.h"
 #include "McPropsMgr.h"
@@ -922,7 +921,7 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 		sprintf_s( vbuff, 1000,
 			"%s\r\n%s\r\n"
 			"Emcee Desktop Organizer\r\n%s"
-			"\r\nCopyright © 2012 - 2018\r\nEmcee App Software\r\nAll Rights Reserved",
+			"\r\nCopyright  2012 - 2018\r\nEmcee App Software\r\nAll Rights Reserved",
 			MC::getComputerName(),bbuff,_EMCEE_VERSION);
 		copyright->Text = gcnew String( vbuff );
 		settings->AutoSize = true;
