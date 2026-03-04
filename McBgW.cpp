@@ -73,6 +73,9 @@ void McBgW::Activate( )
 		COLORREF bgColor = McModernAppMgr::GetBgColor( );
 		startB->Activate( bgColor, McModernAppMgr::GetAppBarColor( ) );
 		taskViewB->Activate( bgColor, McModernAppMgr::GetAppBarColor( ) );
+#if MC_DESKTOPS
+		McModernAppMgr::RefreshVirtualDesktopInfo( );
+#endif
 		arrowsNeeded = FALSE;
 		currentArrowSize = 0;
 		SetWindowText( getHwnd( ), L"BgW" );
@@ -192,6 +195,63 @@ LRESULT McBgW::HandleMessage( UINT uMsg, WPARAM wParam, LPARAM lParam )
 				r.bottom++;
 				FillRect( hdc, &r, desktopBgBrush );
 			}
+
+#if MC_DESKTOPS
+			if (MC::getProperties( )->getShowDesktopList( ))
+			{
+				McModernAppMgr::McVirtualDesktopInfo *vdi = McModernAppMgr::GetVirtualDesktopInfo( );
+				if (vdi->count > 1)
+				{
+					McRect bgR( MC::getMM( ) ? &dR : &mR );
+					float objScale = mainMonitor->getObjectScale( );
+					int rectWidth = (int)(130 * objScale);
+					int rectHeight = (int)(32 * objScale);
+					int spacing = (int)(10 * objScale);
+					int totalWidth = vdi->count * (rectWidth + spacing) - spacing;
+					int startX = bgR.left + (bgR.getWidth( ) - totalWidth) / 2;
+					int startY = bgR.top + (int)(10 * objScale);
+
+					SolidBrush normalBrush( Color( 140, 50, 50, 50 ) );
+					SolidBrush currentBrush( Color( 200, 76, 194, 255 ) );
+					SolidBrush textBrush( Color( 255, 255, 255, 255 ) );
+					Pen currentPen( Color( 255, 76, 194, 255 ), 2.0f );
+					Pen borderPen( Color( 120, 180, 180, 180 ), 1.0f );
+					Font font( L"Segoe UI", 9.5f * objScale );
+					StringFormat sf;
+					sf.SetAlignment( StringAlignmentCenter );
+					sf.SetLineAlignment( StringAlignmentCenter );
+
+					g.SetSmoothingMode( SmoothingModeAntiAlias );
+					g.SetTextRenderingHint( TextRenderingHintAntiAlias );
+
+					for (int i = 0; i < vdi->count; i++)
+					{
+						int x = startX + i * (rectWidth + spacing);
+						RectF rect( (REAL)x, (REAL)startY, (REAL)rectWidth, (REAL)rectHeight );
+						REAL radius = 4.0f * objScale;
+						GraphicsPath path;
+						path.AddArc( rect.X, rect.Y, radius * 2, radius * 2, 180, 90 );
+						path.AddArc( rect.X + rect.Width - radius * 2, rect.Y, radius * 2, radius * 2, 270, 90 );
+						path.AddArc( rect.X + rect.Width - radius * 2, rect.Y + rect.Height - radius * 2, radius * 2, radius * 2, 0, 90 );
+						path.AddArc( rect.X, rect.Y + rect.Height - radius * 2, radius * 2, radius * 2, 90, 90 );
+						path.CloseFigure( );
+
+						if (i == vdi->currentIndex)
+						{
+							g.FillPath( &currentBrush, &path );
+							g.DrawPath( &currentPen, &path );
+						}
+						else
+						{
+							g.FillPath( &normalBrush, &path );
+							g.DrawPath( &borderPen, &path );
+						}
+
+						g.DrawString( vdi->names[i], -1, &font, rect, &sf, &textBrush );
+					}
+				}
+			}
+#endif
 
 			if (appBarColor == 0)
 			{

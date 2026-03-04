@@ -43,6 +43,11 @@ System::Void McSettingsEditor::showAllDesktops_CheckedChanged( System::Object ^s
 	BOOL checked = showAllDesktops->Checked == true ? TRUE : FALSE;
 	data->showAllDesktops = checked;
 }
+System::Void McSettingsEditor::showDesktopList_CheckedChanged( System::Object ^sender, System::EventArgs^ e )
+{
+	BOOL checked = showDesktopListCB->Checked == true ? TRUE : FALSE;
+	data->showDesktopList = checked;
+}
 #endif
 System::Void McSettingsEditor::useAppBar_CheckedChanged( System::Object ^sender, System::EventArgs^ e )
 {
@@ -468,6 +473,7 @@ void McSettingsEditor::displayData( )
    stackWindowsCB->Checked = data->stackWindows ? true : false;
 #if MC_DESKTOPS
 	showAllDesktops->Checked = data->showAllDesktops ? true : false;
+	showDesktopListCB->Checked = data->showDesktopList ? true : false;
 #endif
 	useAppBar->Checked = data->useAppBar ? true : false;
 	if (MC::getMD( ))

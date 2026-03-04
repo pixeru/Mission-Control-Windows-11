@@ -72,6 +72,7 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 	System::Windows::Forms::CheckBox^  customHotKeyCB;
 #if MC_DESKTOPS
 	System::Windows::Forms::CheckBox^ showAllDesktops;
+	System::Windows::Forms::CheckBox^ showDesktopListCB;
 #endif
 	System::Windows::Forms::CheckBox^ useAppBar;
 	System::Windows::Forms::CheckBox^ multiMonitor;
@@ -150,6 +151,7 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 		customHotKeyCB = (gcnew System::Windows::Forms::CheckBox( ));
 #if MC_DESKTOPS
 		showAllDesktops = (gcnew System::Windows::Forms::CheckBox( ));
+		showDesktopListCB = (gcnew System::Windows::Forms::CheckBox( ));
 #endif
 		useAppBar = (gcnew System::Windows::Forms::CheckBox( ));
 		if (MC::getMD( ))
@@ -316,6 +318,7 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 		actTickBoxPanel->Controls->Add( useAppBar );
 #if MC_DESKTOPS
 		actTickBoxPanel->Controls->Add( showAllDesktops );
+		actTickBoxPanel->Controls->Add( showDesktopListCB );
 #endif
 		actTickBoxPanel->Controls->Add( allowHotCornerCB );
 		actTickBoxPanel->Controls->Add( disableLabelCB );
@@ -386,6 +389,15 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 		showAllDesktops->Text = L"Show Windows From All Desktops";
 		showAllDesktops->CheckedChanged += gcnew System::EventHandler( this, &McSettingsEditor::showAllDesktops_CheckedChanged );
 		if (MC::inTabletMode( )) showAllDesktops->Enabled = false;
+		// showDesktopListCB
+		showDesktopListCB->AutoSize = true;
+		showDesktopListCB->Font = (gcnew System::Drawing::Font( L"Segoe UI", 11.75F*scale, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+			static_cast<System::Byte>(0) ));
+		showDesktopListCB->Name = L"showDesktopListCB";
+		showDesktopListCB->TabIndex = 2;
+		showDesktopListCB->Text = L"Show Desktop List";
+		showDesktopListCB->CheckedChanged += gcnew System::EventHandler( this, &McSettingsEditor::showDesktopList_CheckedChanged );
+		if (MC::inTabletMode( )) showDesktopListCB->Enabled = false;
 #endif
 		// useAppBar
 		useAppBar->AutoSize = true;
@@ -942,6 +954,7 @@ private:
 	System::Void customHotKeyCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 #if MC_DESKTOPS
 	System::Void showAllDesktops_CheckedChanged( System::Object^ sender, System::EventArgs^ e );
+	System::Void showDesktopList_CheckedChanged( System::Object^ sender, System::EventArgs^ e );
 #endif
 	System::Void useAppBar_CheckedChanged( System::Object^ sender, System::EventArgs^ e );
 	System::Void multiMonitor_CheckedChanged( System::Object^ sender, System::EventArgs^ e );

@@ -83,12 +83,23 @@ public:
 #if MC_DESKTOPS
 	static BOOL McModernAppMgr::IsWindowOnCurrentDesktop( HWND hwnd );
 	static void McModernAppMgr::GetWindowDesktop( HWND hwnd, GUID *desktopID );
+
+	struct McVirtualDesktopInfo {
+		int count;
+		int currentIndex;
+		wchar_t names[20][256];
+	};
+	static void RefreshVirtualDesktopInfo( );
+	static McVirtualDesktopInfo* GetVirtualDesktopInfo( ) { return &_desktopInfo; }
 #endif
 	static BOOL		IsLauncherVisible( );
 
 private:
 
 	static _ModerrnAppMgr* _ModernAppProxy;
+#if MC_DESKTOPS
+	static McVirtualDesktopInfo _desktopInfo;
+#endif
 
 };
 

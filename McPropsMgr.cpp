@@ -145,6 +145,7 @@ char *McPropsMgr::scanValue( )
 	if ( !_stricmp( name, "disablelog" ) ||
 #if MC_DESKTOPS
 		 !_stricmp( name, "showAllDesktops" ) ||
+		 !_stricmp( name, "showDesktopList" ) ||
 #endif
 		 !_stricmp( name, "useAppBar" ) ||
 		 !_stricmp( name, "multiMonitor" ) ||
@@ -165,6 +166,7 @@ char *McPropsMgr::scanValue( )
 		else if (!_stricmp( name, "multiMonitor" )) data->multiMonitor = val;
 #if MC_DESKTOPS
 		else if ( !_stricmp( name, "showAllDesktops" )) data->showAllDesktops = val;
+		else if ( !_stricmp( name, "showDesktopList" )) data->showDesktopList = val;
 #endif
 		else if ( !_stricmp( name, "useAppBar" )) data->useAppBar = val;
 		else if (!_stricmp( name, "dtAutoColor" )) data->dtAutoColor = val;
@@ -316,6 +318,7 @@ void McPropsMgr::write()
 	fprintf( f, "<value multiMonitor> %s\n", data->multiMonitor ? "TRUE" : "FALSE" );
 #if MC_DESKTOPS
 	fprintf( f, "<value showAllDesktops> %s\n", data->showAllDesktops ? "TRUE" : "FALSE" );
+	fprintf( f, "<value showDesktopList> %s\n", data->showDesktopList ? "TRUE" : "FALSE" );
 #endif
 	fprintf( f, "<value useAppBar> %s\n", data->useAppBar ? "TRUE" : "FALSE" );
 	fprintf( f, "<value hotKeyCode> %u\n", data->hotKeyCode );

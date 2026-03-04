@@ -758,6 +758,9 @@ static BOOL CALLBACK _enumChildCB( HWND hwnd, LPARAM objPtr )
 ////////////// PART D: IMPLENETATION OF McModernAppMgr Methods //////////////////////
 
 _ModerrnAppMgr*	McModernAppMgr::_ModernAppProxy = NULL;
+#if MC_DESKTOPS
+McModernAppMgr::McVirtualDesktopInfo McModernAppMgr::_desktopInfo = {};
+#endif
 
 HRESULT McModernAppMgr::Initialize()
 {
@@ -926,6 +929,74 @@ void McModernAppMgr::GetWindowDesktop( HWND hwnd, GUID *desktopID )
 {
 	if (!desktopID) return;
 	if (_ModernAppProxy) return _ModernAppProxy->GetWindowDesktop( hwnd, desktopID );
+}
+
+void McModernAppMgr::RefreshVirtualDesktopInfo( )
+{
+	_desktopInfo.count = 1;
+	_desktopInfo.currentIndex = 0;
+	wcscpy_s( _desktopInfo.names[0], L"Desktop 1" );
+
+	HKEY hKey;
+	if (RegOpenKeyExW( HKEY_CURRENT_USER,
+		L"SOFTWARE\\Microsoft\\Windows\\CurrentVersion\\Explorer\\VirtualDesktops",
+		0, KEY_READ, &hKey ) != ERROR_SUCCESS)
+		return;
+
+	BYTE desktopIds[20 * 16] = { 0 };
+	DWORD dataSize = sizeof( desktopIds );
+	if (RegQueryValueExW( hKey, L"VirtualDesktopIDs", NULL, NULL, desktopIds, &dataSize ) == ERROR_SUCCESS)
+		_desktopInfo.count = min( 20, (int)(dataSize / 16) );
+
+	if (_desktopInfo.count < 1)
+		_desktopInfo.count = 1;
+
+	BYTE currentId[16] = { 0 };
+	DWORD currentSize = 16;
+	if (RegQueryValueExW( hKey, L"CurrentVirtualDesktop", NULL, NULL, currentId, &currentSize ) == ERROR_SUCCESS)
+	{
+		for (int i = 0; i < _desktopInfo.count; i++)
+		{
+			if (memcmp( &desktopIds[i * 16], currentId, 16 ) == 0)
+			{
+				_desktopInfo.currentIndex = i;
+				break;
+			}
+		}
+	}
+
+	HKEY desktopsKey;
+	BOOL hasDesktopsKey = (RegOpenKeyExW( hKey, L"Desktops", 0, KEY_READ, &desktopsKey ) == ERROR_SUCCESS);
+
+	for (int i = 0; i < _desktopInfo.count; i++)
+	{
+		BOOL named = FALSE;
+		if (hasDesktopsKey)
+		{
+			GUID *guid = (GUID *)&desktopIds[i * 16];
+			wchar_t guidStr[64];
+			StringFromGUID2( *guid, guidStr, 64 );
+
+			HKEY deskKey;
+			if (RegOpenKeyExW( desktopsKey, guidStr, 0, KEY_READ, &deskKey ) == ERROR_SUCCESS)
+			{
+				DWORD nameSize = sizeof( _desktopInfo.names[i] );
+				if (RegQueryValueExW( deskKey, L"Name", NULL, NULL,
+					(LPBYTE)_desktopInfo.names[i], &nameSize ) == ERROR_SUCCESS &&
+					_desktopInfo.names[i][0] != 0)
+				{
+					named = TRUE;
+				}
+				RegCloseKey( deskKey );
+			}
+		}
+		if (!named)
+			swprintf_s( _desktopInfo.names[i], L"Desktop %d", i + 1 );
+	}
+
+	if (hasDesktopsKey)
+		RegCloseKey( desktopsKey );
+	RegCloseKey( hKey );
 }
 #endif
 

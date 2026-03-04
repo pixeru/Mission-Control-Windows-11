@@ -41,6 +41,7 @@ struct McPropData
 		disableLabels		= TRUE;
 #if MC_DESKTOPS
 		showAllDesktops		= FALSE;
+		showDesktopList		= TRUE;
 #endif
 		useAppBar			= TRUE;
 		immersiveTileHeight	= 1.5;
@@ -102,6 +103,7 @@ struct McPropData
 		stackWindows = d->stackWindows;
 #if MC_DESKTOPS
 		showAllDesktops = d->showAllDesktops;
+		showDesktopList = d->showDesktopList;
 #endif
 		useAppBar = d->useAppBar;
 		masterList.clear();
@@ -119,6 +121,7 @@ struct McPropData
 	long			hotKeyCode;
 #if MC_DESKTOPS
 	BOOL			showAllDesktops;
+	BOOL			showDesktopList;
 #endif
 	BOOL			useAppBar;
 	double			immersiveTileHeight;
@@ -160,6 +163,7 @@ public:
 	BOOL getDisableLabels()			{ return data->disableLabels; }
 #if MC_DESKTOPS
 	BOOL getShowAllDesktops( )		{ return data->showAllDesktops; }
+	BOOL getShowDesktopList( )		{ return data->showDesktopList; }
 #endif
 	BOOL getUseAppBar( )			{ return data->useAppBar;	}
 	BOOL getHardwareAcceleration( )	{ return data->hardwareAcceleration; }
