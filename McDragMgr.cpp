@@ -41,6 +41,8 @@ BOOL McDragMgr::isIdle( )
 
 BOOL McDragMgr::processEvent( HWND posHwnd, MC_DRAG_EVENT eventType, long x, long y, McWItem *item )
 {
+	return FALSE; // Disabled dragging permanently because it interferes with clicking
+
 	if ( eventType == DragButtonDown )
 	{
 		dragItem = item;
