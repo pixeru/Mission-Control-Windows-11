@@ -316,7 +316,7 @@ McThumbW *McWindowMgr::allocateThumbW( McWItem *item )
 
 		SetGestureConfig( hwnd, 0, uiGcs, gc, sizeof( GESTURECONFIG ) );
 
-		LONG newStyle = WS_POPUP | WS_BORDER;
+		LONG newStyle = WS_POPUP;
 		SetWindowLongPtr( hwnd, GWL_STYLE, newStyle );
 
 		int policy = DWMNCRP_ENABLED;
