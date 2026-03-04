@@ -7,7 +7,6 @@
 // Mission Control for Windows 11 by pixeru
 // Source code originally by Emcee (https://sourceforge.net/projects/mcsoft/)
 // Extensive development by pixeru due to discontinued development of original project.
-// Copyright (c) pixeru. All rights reserved.
 #include "stdafx.h"
 
 #pragma unmanaged
