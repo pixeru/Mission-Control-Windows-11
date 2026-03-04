@@ -123,7 +123,8 @@ McBackingW *McWindowMgr::allocateBackingW( )
 	if (!backingW)
 	{
 		backingW = new McBackingW( );
-		backingW->Create( L"BackingW" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		backingW->Create( L"BackingW", NULL, hwAccel );
 
 		long xsettings = GetWindowLong( backingW->getHwnd( ), GWL_EXSTYLE );
 		SetWindowLong( backingW->getHwnd( ), GWL_EXSTYLE, xsettings | WS_EX_LAYERED );
@@ -137,7 +138,8 @@ McFadingW *McWindowMgr::allocateFadingW( )
 	if (!fadingW)
 	{
 		fadingW = new McFadingW( );
-		fadingW->Create( L"FadingW" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		fadingW->Create( L"FadingW", NULL, hwAccel );
 
 		long xsettings = GetWindowLong( fadingW->getHwnd( ), GWL_EXSTYLE );
 		SetWindowLong( fadingW->getHwnd( ), GWL_EXSTYLE, xsettings | WS_EX_LAYERED );
@@ -151,7 +153,8 @@ McLabelW *McWindowMgr::allocateLabelW( )
 	if (!labelW)
 	{
 		labelW = new McLabelW( );
-		labelW->Create( L"LabelW" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		labelW->Create( L"LabelW", NULL, hwAccel );
 		long xsettings = GetWindowLong( labelW->getHwnd( ), GWL_EXSTYLE );
 		SetWindowLong( labelW->getHwnd( ), GWL_EXSTYLE, xsettings | WS_EX_LAYERED );
 	}
@@ -164,7 +167,8 @@ McZoomW *McWindowMgr::allocateZoomW( )
 	if (!zoomW)
 	{
 		zoomW = new McZoomW( );
-		zoomW->Create( L"ZoomW" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		zoomW->Create( L"ZoomW", NULL, hwAccel );
 
 		DWORD dwPanWant = GC_PAN_WITH_SINGLE_FINGER_VERTICALLY;
 		DWORD dwPanBlock = GC_PAN_WITH_GUTTER | GC_PAN_WITH_INERTIA | GC_PAN_WITH_SINGLE_FINGER_HORIZONTALLY;
@@ -195,7 +199,8 @@ McMainW *McWindowMgr::allocateMainW( )
 	if (!mainW)
 	{
 		mainW = new McMainW( );
-		mainW->Create( L"MainW" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		mainW->Create( L"MainW", NULL, hwAccel );
 
 		DWORD dwPanWant = 0;
 		DWORD dwPanBlock = GC_PAN_WITH_SINGLE_FINGER_VERTICALLY | GC_PAN_WITH_GUTTER | GC_PAN_WITH_INERTIA | GC_PAN_WITH_SINGLE_FINGER_HORIZONTALLY;
@@ -224,7 +229,8 @@ McButtonW *McWindowMgr::allocateButtonW( WCHAR *_name, McBgW *bgW, int w, int h,
 	if (freeButtonWList.size( ) == 0)
 	{
 		bw = new McButtonW( );
-		bw->Create( L"ButtonW", L"ActionWindow" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		bw->Create( L"ButtonW", L"ActionWindow", hwAccel );
 		freeButtonWList.push_back( bw );
 	}
 
@@ -251,18 +257,21 @@ McDesktopW *McWindowMgr::allocateDesktopW( McWItem *item, McRect *rect )
 	if (freeDesktopWList.size( ) == 0)
 	{
 		dt = new McDesktopW( );
-		dt->Create( L"DesktopW", L"MonitorWindow" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		dt->Create( L"DesktopW", L"MonitorWindow", hwAccel );
 
 		HWND hwnd = dt->getHwnd( );
 
-		MARGINS marg = { -1 };
-
-		int policy = DWMNCRP_ENABLED;
-		DwmSetWindowAttribute( hwnd, DWMWA_NCRENDERING_POLICY, &policy, sizeof( int ) );
-		DwmExtendFrameIntoClientArea( hwnd, &marg );
-
 		LONG newStyle = WS_POPUP;
 		SetWindowLongPtr( hwnd, GWL_STYLE, newStyle );
+
+		if ( hwAccel )
+		{
+			MARGINS marg = { -1 };
+			int policy = DWMNCRP_ENABLED;
+			DwmSetWindowAttribute( hwnd, DWMWA_NCRENDERING_POLICY, &policy, sizeof( int ) );
+			DwmExtendFrameIntoClientArea( hwnd, &marg );
+		}
 
 		freeDesktopWList.push_back( dt );
 	}
@@ -290,10 +299,10 @@ McThumbW *McWindowMgr::allocateThumbW( McWItem *item )
 	if (freeThumbWList.size( ) == 0)
 	{
 		tw = new McThumbW( );
-		tw->Create( L"ThumbW", L"AppWindow" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		tw->Create( L"ThumbW", L"AppWindow", hwAccel );
 
 		HWND hwnd = tw->getHwnd( );
-		MARGINS marg = { -1 };
 
 		DWORD dwPanWant = GC_PAN;
 		DWORD dwPanBlock = GC_PAN_WITH_GUTTER | GC_PAN_WITH_INERTIA;
@@ -319,9 +328,13 @@ McThumbW *McWindowMgr::allocateThumbW( McWItem *item )
 		LONG newStyle = WS_POPUP;
 		SetWindowLongPtr( hwnd, GWL_STYLE, newStyle );
 
-		int policy = DWMNCRP_ENABLED;
-		DwmSetWindowAttribute( hwnd, DWMWA_NCRENDERING_POLICY, &policy, sizeof( int ) );
-		DwmExtendFrameIntoClientArea( hwnd, &marg );
+		if ( hwAccel )
+		{
+			MARGINS marg = { -1 };
+			int policy = DWMNCRP_ENABLED;
+			DwmSetWindowAttribute( hwnd, DWMWA_NCRENDERING_POLICY, &policy, sizeof( int ) );
+			DwmExtendFrameIntoClientArea( hwnd, &marg );
+		}
 
 		freeThumbWList.push_back( tw );
 	}

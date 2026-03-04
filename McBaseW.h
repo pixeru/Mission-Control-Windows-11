@@ -38,7 +38,7 @@ public:
 
 	McBaseW() : m_hwnd(NULL) {}
 
-	BOOL Create( PCWSTR lpWindowName, WCHAR *classSuffix = NULL )
+	BOOL Create( PCWSTR lpWindowName, WCHAR *classSuffix = NULL, BOOL hwAccel = TRUE )
 	{
 		WNDCLASS wc = {0};
 
@@ -57,8 +57,13 @@ public:
 
 		RegisterClass(&wc);
 
+		// Use WS_EX_COMPOSITED for hardware-accelerated double buffering when enabled
+		DWORD exStyle = WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
+		if ( hwAccel )
+			exStyle |= WS_EX_COMPOSITED;
+
 		m_hwnd = CreateWindowEx(
-			WS_EX_TOPMOST|WS_EX_COMPOSITED|WS_EX_TOOLWINDOW, 
+			exStyle, 
 			b, 
 			lpWindowName,
 			WS_CHILD,
@@ -71,6 +76,14 @@ public:
 
 		unsigned pva1 = DWMFLIP3D_EXCLUDEBELOW;
 		DwmSetWindowAttribute( m_hwnd, DWMWA_FLIP3D_POLICY, &pva1, sizeof( pva1 ) );
+
+		// Enable DWM-based hardware acceleration features when setting is on
+		if ( hwAccel )
+		{
+			// Extend frame into client area for DWM composited rendering
+			MARGINS margins = { -1 };
+			DwmExtendFrameIntoClientArea( m_hwnd, &margins );
+		}
 
 		return (m_hwnd ? TRUE : FALSE);
 	}

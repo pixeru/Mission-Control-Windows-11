@@ -159,6 +159,7 @@ char *McPropsMgr::scanValue( )
 		 !_stricmp( name, "useAppBar" ) ||
 		 !_stricmp( name, "multiMonitor" ) ||
 		 !_stricmp( name, "disableLabels" ) ||
+		 !_stricmp( name, "hardwareAcceleration" ) ||
 		 !_stricmp( name, "dtAutoColor" ))
 	{
 		BOOL val;
@@ -175,6 +176,7 @@ char *McPropsMgr::scanValue( )
 #endif
 		else if ( !_stricmp( name, "useAppBar" )) data->useAppBar = val;
 		else if (!_stricmp( name, "dtAutoColor" )) data->dtAutoColor = val;
+		else if (!_stricmp( name, "hardwareAcceleration" )) data->hardwareAcceleration = val;
 		return NULL;
 	}
 
@@ -332,6 +334,7 @@ void McPropsMgr::write()
 
 	fprintf( f, "<value dtAutoColor> %s\n", data->dtAutoColor ? "TRUE" : "FALSE" );
 	fprintf( f, "<value dtBgColor> %ld #0x%x\n", data->dtBgColor, data->dtBgColor );
+	fprintf( f, "<value hardwareAcceleration> %s\n", data->hardwareAcceleration ? "TRUE" : "FALSE" );
 
 	for ( list<McGroup *>::iterator gi = data->masterList.begin(); gi != data->masterList.end(); gi++ )
 	{

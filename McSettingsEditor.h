@@ -86,6 +86,7 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 	System::Windows::Forms::CheckBox^ useAppBar;
 	System::Windows::Forms::CheckBox^ multiMonitor;
 	System::Windows::Forms::CheckBox^  disableLabelCB;
+	System::Windows::Forms::CheckBox^  hardwareAccelCB;
 	System::Windows::Forms::FlowLayoutPanel^	hotKeyPanel;
 	System::Windows::Forms::RadioButton^		altButton;
 	System::Windows::Forms::RadioButton^		ctrlButton;
@@ -162,6 +163,7 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 		if (MC::getMD( ))
 			multiMonitor = (gcnew System::Windows::Forms::CheckBox( ));
 		disableLabelCB = (gcnew System::Windows::Forms::CheckBox( ));
+			hardwareAccelCB = (gcnew System::Windows::Forms::CheckBox( ));
 		hotKeyPanel = (gcnew System::Windows::Forms::FlowLayoutPanel( ));
 		keyCombo = (gcnew System::Windows::Forms::ComboBox( ));
 		modifierBox = (gcnew System::Windows::Forms::FlowLayoutPanel( ));
@@ -323,6 +325,7 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 #endif
 		actTickBoxPanel->Controls->Add( allowHotCornerCB );
 		actTickBoxPanel->Controls->Add( disableLabelCB );
+			actTickBoxPanel->Controls->Add( hardwareAccelCB );
 		if (MC::getMD( ))
 		{
 			actTickBoxPanel->Controls->Add( multiMonitor );
@@ -337,6 +340,14 @@ public ref class McSettingsEditor : public System::Windows::Forms::Form
 		disableLabelCB->TabIndex = 1;
 		disableLabelCB->Text = L"Disable Window Labels";
 		disableLabelCB->CheckedChanged += gcnew System::EventHandler( this, &McSettingsEditor::disableLabelCB_CheckChanged );
+			// hardwareAccelCB
+			hardwareAccelCB->AutoSize = true;
+			hardwareAccelCB->Font = (gcnew System::Drawing::Font( L"Segoe UI", 11.75F*scale/*9.75*/, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
+				static_cast<System::Byte>(0) ));
+			hardwareAccelCB->Name = L"hardwareAccelCB";
+			hardwareAccelCB->TabIndex = 3;
+			hardwareAccelCB->Text = L"Enable Hardware Acceleration";
+			hardwareAccelCB->CheckedChanged += gcnew System::EventHandler( this, &McSettingsEditor::hardwareAccelCB_CheckedChanged );
 		// allowHotCornerCB
 		allowHotCornerCB->AutoSize = true;
 		allowHotCornerCB->Font = (gcnew System::Drawing::Font( L"Segoe UI", 11.75F*scale/*9.75*/, System::Drawing::FontStyle::Regular, System::Drawing::GraphicsUnit::Point,
@@ -924,6 +935,7 @@ private:
 	System::Void multiMonitor_CheckedChanged( System::Object^ sender, System::EventArgs^ e );
 	System::Void allowHotCornerCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 	System::Void disableLabelCB_CheckChanged(System::Object^  sender, System::EventArgs^  e);
+	System::Void hardwareAccelCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e);
 
 	System::Void autoColorCheckCB_CheckedChanged( System::Object^  sender, System::EventArgs^  e );
 	System::Void colorPick_Click( System::Object^  sender, System::EventArgs^  e );

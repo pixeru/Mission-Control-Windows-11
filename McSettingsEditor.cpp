@@ -76,6 +76,12 @@ System::Void McSettingsEditor::disableLabelCB_CheckChanged(System::Object^  send
 	data->disableLabels = checked;
 }
 
+System::Void McSettingsEditor::hardwareAccelCB_CheckedChanged(System::Object^  sender, System::EventArgs^  e)
+{
+	BOOL checked = hardwareAccelCB->Checked == true ? TRUE : FALSE;
+	data->hardwareAcceleration = checked;
+}
+
 System::Void McSettingsEditor::autoColorCheckCB_CheckedChanged( System::Object^  sender, System::EventArgs^  e )
 {
 	BOOL checked = autoColorCheck->Checked == true ? TRUE : FALSE;
@@ -455,6 +461,7 @@ void McSettingsEditor::displayData( )
 	autoColorCheck->Checked = data->dtAutoColor ? true : false;
 	allowHotCornerCB->Checked = data->mouseCornerActivate ? true : false;
 	disableLabelCB->Checked = data->disableLabels ? true : false;
+   hardwareAccelCB->Checked = data->hardwareAcceleration ? true : false;
 #if MC_DESKTOPS
 	showAllDesktops->Checked = data->showAllDesktops ? true : false;
 #endif

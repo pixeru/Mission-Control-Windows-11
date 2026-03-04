@@ -59,7 +59,8 @@ struct McPropData
 		dtAutoColor			= TRUE;
 		dtBgColor			= RGB( 141, 141, 141 );
 		hotKeyCode			= _HK_DEFAULT;
-		animationSpeed		= 5; 
+		animationSpeed		= 5;
+		hardwareAcceleration= TRUE;
 	}
 
 	~McPropData()
@@ -92,6 +93,7 @@ struct McPropData
 		dtBgColor = d->dtBgColor;
 		dtAutoColor = d->dtAutoColor;
 		animationSpeed = d->animationSpeed;
+		hardwareAcceleration = d->hardwareAcceleration;
 #if MC_DESKTOPS
 		showAllDesktops = d->showAllDesktops;
 #endif
@@ -119,6 +121,7 @@ struct McPropData
 	BOOL			dtAutoColor;
 	COLORREF		dtBgColor;
 	int				animationSpeed;
+	BOOL			hardwareAcceleration;
 	list<McGroup*>	masterList;
 	list<string>	excludeList;
 };
@@ -151,6 +154,7 @@ public:
 	BOOL getShowAllDesktops( )		{ return data->showAllDesktops; }
 #endif
 	BOOL getUseAppBar( )			{ return data->useAppBar;	}
+	BOOL getHardwareAcceleration( )	{ return data->hardwareAcceleration; }
 	int  getMouseCornerActivate()	{ return data->mouseCornerActivate; }
 	long getHotKeyCode()			{ return data->hotKeyCode; }
 

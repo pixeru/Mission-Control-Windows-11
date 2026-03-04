@@ -74,7 +74,8 @@ void McBgW::Activate( )
 {
 	if (!isActivated)
 	{
-		Create( L"BgW" );
+		BOOL hwAccel = MC::getProperties()->getHardwareAcceleration();
+		Create( L"BgW", NULL, hwAccel );
 		DWORD xsettings = GetWindowLong( getHwnd( ), GWL_EXSTYLE );
 		SetWindowLong( getHwnd( ), GWL_EXSTYLE, xsettings | WS_EX_LAYERED );
 		SetLayeredWindowAttributes( getHwnd( ), McModernAppMgr::GetBgColor( ), 0, LWA_COLORKEY );
