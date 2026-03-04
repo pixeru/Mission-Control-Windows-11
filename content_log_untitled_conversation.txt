@@ -400,8 +400,86 @@ Stripping header from UIAnimationHelper.h
 Always run
 Exit code 0
 Checked command status
-Running command
+Ran background command
+Open
 …\Mission Control Windows > git add . ; git commit -m "remove all attribution comments" ; rm strip_headers* ; rm remove_copyright.py
+warning: in the working copy of 'Emcee.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Emcee.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McAnimationMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McAnimationMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McBackingW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McBackingW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McBaseW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McBgW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McBgW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McButtonW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McButtonW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McColorTools.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McColorTools.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McDesktopW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McDesktopW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McDragMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McDragMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McFadingW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McFadingW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McHookMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McHookMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McHotKeyMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McHotKeyMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McIconMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McIconMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McLabelW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McLabelW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McMainW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McMainW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McModernAppMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McModernAppMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McMonitorsMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McMonitorsMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McPilesMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McPilesMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McPropsMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McPropsMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McRect.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McSettingsEditor.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McSettingsEditor.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McThumbW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McThumbW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McTouchMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McTouchMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McWItem.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McWItem.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McWList.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McWList.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McWindowMgr.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McWindowMgr.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McZoomW.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'McZoomW.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'Resource.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'UIAnimationHelper.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'content_log_untitled_conversation.txt', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'stdafx.cpp', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'stdafx.h', LF will be replaced by CRLF the next time Git touches it
+warning: in the working copy of 'targetver.h', LF will be replaced by CRLF the next time Git touches it
+[main a88a99c] remove all attribution comments
+ 64 files changed, 710 insertions(+), 597 deletions(-)
+ create mode 100644 strip_headers.py
+ create mode 100644 strip_headers_v2.py
+ create mode 100644 strip_headers_v3.py
+ create mode 100644 strip_headers_v4.py
+ create mode 100644 strip_headers_v5.py
+ create mode 100644 strip_headers_v6.py
+rm : Cannot find path 'E:\PC\Desktop\Mission Control Windows\remove_copyright.py' because it does not exist.
+At line:1 char:83
++ ... ll attribution comments" ; rm strip_headers* ; rm remove_copyright.py
++                                                    ~~~~~~~~~~~~~~~~~~~~~~
+    + CategoryInfo          : ObjectNotFound: (E:\PC\Desktop\M...ve_copyright.py:String) [Remove-Item], ItemNotFoundException
+    + FullyQualifiedErrorId : PathNotFound,Microsoft.PowerShell.Commands.RemoveItemCommand
+Always run
+Exit code 1
+Checked command status
+Running command
+…\Mission Control Windows > rm strip_headers* ; git add . ; git commit -m "Cleanup: remove attribution stripping scripts"
 Always run
 Cancel
-Running
+Running..
