@@ -509,12 +509,22 @@ void McPilesMgr::createPiles( )
 			if (!group)
 				group = _W10_APP_PILE_NAME;
 
-			for (it = pList.begin( ); it != pList.end( ); it++)
+			BOOL stackWindows = MC::getProperties()->getStackWindows();
+
+			if (stackWindows)
 			{
-				pile = *it;
-				if (pile->matches( group ))
-					break;
+				for (it = pList.begin( ); it != pList.end( ); it++)
+				{
+					pile = *it;
+					if (pile->matches( group ))
+						break;
+				}
 			}
+			else
+			{
+				it = pList.end();
+			}
+
 			if (it == pList.end( ))
 			{
 				pile = new McPile( MC::getMM( ) ? monitor : mainMonitor, group );
