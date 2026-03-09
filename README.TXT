@@ -1,4 +1,4 @@
-Mission Control for Windows 11 by pixeru
+Mission Control for Windows 11 rewrite by pixeru
 (Originally by Emcee)
 --------------------------------------
 
